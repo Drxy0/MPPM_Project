@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog xmlns="http://langdale.com.au/2005/Message#"
+         xmlns:m="http://iec.ch/TC57/2007/profile#"
+         hideInDiagrams="false"
+         ontologyURI="http://iec.ch/TC57/CIM-generic"
+         baseURI="http://iec.ch/TC57/2007/profile#"
+         name="Profile">
+   <Package name="Core"
+            ea_guid="EAPK_6A503B72_6E15_4cd1_B92D_DDF6D14DBE29"
+            basePackage="http://iec.ch/TC57/CIM-generic#Package_Core">
+      <Comment>Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.</Comment>
+      <ParentPackage name="IEC61970"
+                     basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61970"/>
+   </Package>
+   <Package name="IEC61970"
+            ea_guid="EAPK_21D32832_FF64_4213_B81C_55ACE35EEBFF"
+            basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61970">
+      <Comment>Top package for IEC 61970.</Comment>
+      <ParentPackage name="TC57CIM"
+                     basePackage="http://iec.ch/TC57/CIM-generic#Package_TC57CIM"/>
+   </Package>
+   <Package name="IES_Projects"
+            ea_guid="EAPK_E247A296_8489_40cb_BCAA_5C6C1053AE29"
+            basePackage="http://iec.ch/TC57/CIM-generic#Package_IES_Projects">
+      <ParentPackage name="TC57CIM"
+                     basePackage="http://iec.ch/TC57/CIM-generic#Package_TC57CIM"/>
+   </Package>
+   <Package name="TC57CIM"
+            ea_guid="EAPK_39AA7E64_A03A_4934_AF09_E74943F7E6C0"
+            basePackage="http://iec.ch/TC57/CIM-generic#Package_TC57CIM">
+      <Comment>Top package for IEC TC57 CIM.</Comment>
+   </Package>
+   <Package name="Wires"
+            ea_guid="EAPK_6C99E9CA_2035_4035_B77F_9217E17D86F4"
+            basePackage="http://iec.ch/TC57/CIM-generic#Package_Wires">
+      <Comment>An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.</Comment>
+      <ParentPackage name="IEC61970"
+                     basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61970"/>
+   </Package>
+   <ComplexType name="ConductingEquipment"
+                hideInDiagrams="false"
+                ea_guid="EAID_6329A789_1DA5_4de0_B463_C75A962A11BC"
+                baseClass="http://iec.ch/TC57/CIM-generic#ConductingEquipment"
+                package="Core"
+                packageURI="http://iec.ch/TC57/CIM-generic#Package_Core"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>The parts of the power system that are designed to carry current or that are conductively connected through terminals.</Comment>
+      <SuperType name="Equipment" baseClass="http://iec.ch/TC57/CIM-generic#Equipment"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 type="Terminal"
+                 name="Terminals"
+                 ea_guid="EAID_9E7593D2_8C72_45df_AA15_3E76710B9ABF-A"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#ConductingEquipment.Terminals"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#ConductingEquipment"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConductingEquipment"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Terminal.ConductingEquipment">
+         <Comment>Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#ConductingEquipment"
+                        ea_guid="EAID_204D75E9_896F_4868_963B_F8EE85F0BB1D-B"
+                        type="ConductingEquipment"
+                        name="ConductingEquipment"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#Terminal.ConductingEquipment"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        minOccurs="0"
+                        maxOccurs="1"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConductingEquipment.Terminals">
+         <Comment>The conducting equipment of the terminal.  Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</Comment>
+      </InverseReference>
+   </ComplexType>
+   <Root name="ConnectivityNode"
+         hideInDiagrams="false"
+         ea_guid="EAID_66F3D713_D61D_4fb6_9894_8E248701ABE9"
+         baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+         package="Core"
+         packageURI="http://iec.ch/TC57/CIM-generic#Package_Core"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>Connectivity nodes are points where terminals of conducting equipment are connected together with zero impedance.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <SuperType name="IdentifiedObject"
+                 baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer"
+                 type="ConnectivityNodeContainer"
+                 name="ConnectivityNodeContainer"
+                 ea_guid="EAID_4FF54A78_A953_47dd_B9D0_C230ADD07A76-B"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.ConnectivityNodeContainer"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 minOccurs="1"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer.ConnectivityNodes">
+         <Comment>Container of this connectivity node.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        ea_guid="EAID_D2DC7A21_7926_4041_B3F7_08516123A706-A"
+                        type="ConnectivityNode"
+                        name="ConnectivityNodes"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer.ConnectivityNodes"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer"
+                        minOccurs="0"
+                        maxOccurs="unbounded"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.ConnectivityNodeContainer">
+         <Comment>Connectivity nodes which belong to this connectivity node container.</Comment>
+      </InverseReference>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 type="Terminal"
+                 name="Terminals"
+                 ea_guid="EAID_C7E01609_F4E6_4a6e_8ACF_BDD413E62DE3-A"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.Terminals"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Terminal.ConnectivityNode">
+         <Comment>Terminals interconnected with zero impedance at a this connectivity node.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        ea_guid="EAID_309A1FC9_F59D_43c4_8DB4_41BED88A88D2-B"
+                        type="ConnectivityNode"
+                        name="ConnectivityNode"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#Terminal.ConnectivityNode"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        minOccurs="0"
+                        maxOccurs="1"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.Terminals">
+         <Comment>The connectivity node to which this terminal connects with zero impedance.</Comment>
+      </InverseReference>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+                 type="TopologicalNode"
+                 name="TopologicalNode"
+                 ea_guid="EAID_0AA1CF54_3DD3_4967_8D10_E34A4BA0DFC7-B"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.TopologicalNode"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#TopologicalNode.ConnectivityNodes">
+         <Comment>The topological node to which this connectivity node is assigned.  May depend on the current state of switches in the network.</Comment>
+         <Stereotype label="OfAggregate">http://langdale.com.au/2005/UML#ofAggregate</Stereotype>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        ea_guid="EAID_3BB8AC3D_F34B_45f6_9C2F_84B2AD569F0F-A"
+                        type="ConnectivityNode"
+                        name="ConnectivityNodes"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#TopologicalNode.ConnectivityNodes"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+                        minOccurs="0"
+                        maxOccurs="unbounded"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.TopologicalNode">
+         <Comment>The connectivity nodes combine together to form this topological node.  May depend on the current state of switches in the network.</Comment>
+         <Stereotype label="AggregateOf">http://langdale.com.au/2005/UML#aggregateOf</Stereotype>
+      </InverseReference>
+   </Root>
+   <ComplexType name="ConnectivityNodeContainer"
+                hideInDiagrams="false"
+                ea_guid="EAID_E560B79F_F7C2_4f14_86A3_41EB3EEA99E0"
+                baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer"
+                package="IES_Projects"
+                packageURI="http://iec.ch/TC57/CIM-generic#Package_IES_Projects"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>A base class for all objects that may contain connectivity nodes or topological nodes.</Comment>
+      <SuperType name="PowerSystemResource"
+                 baseClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"/>
+   </ComplexType>
+   <ComplexType name="Equipment"
+                hideInDiagrams="false"
+                ea_guid="EAID_4B5C04AE_637A_4418_8298_E150200161D2"
+                baseClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                package="Core"
+                packageURI="http://iec.ch/TC57/CIM-generic#Package_Core"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>The parts of a power system that are physical devices, electronic or mechanical.</Comment>
+      <SuperType name="PowerSystemResource"
+                 baseClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"/>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#boolean"
+              xstype="boolean"
+              name="aggregate"
+              ea_guid="EAID_196ADD8E_55F7_410e_8BD4_750649C35A17"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Equipment.aggregate"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Equipment"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.  Examples would be power transformers or sychronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#boolean"
+              xstype="boolean"
+              name="normallyInService"
+              ea_guid="EAID_BBFD890E_6F91_4cd5_8318_8292C693F219"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Equipment.normallyInService"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Equipment"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>If true, the equipment is normally in service.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+                 type="EquipmentContainer"
+                 name="EquipmentContainer"
+                 ea_guid="EAID_8036398C_2276_4708_A72F_F18AB50EB9C6-A"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#Equipment.EquipmentContainer"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#EquipmentContainer.Equipments">
+         <Comment>Container of this equipment.</Comment>
+         <Stereotype label="OfAggregate">http://langdale.com.au/2005/UML#ofAggregate</Stereotype>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                        ea_guid="EAID_A36EBA13_1828_4fc9_931B_CDC27B589DF7-B"
+                        type="Equipment"
+                        name="Equipments"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#EquipmentContainer.Equipments"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+                        minOccurs="0"
+                        maxOccurs="unbounded"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Equipment.EquipmentContainer">
+         <Comment>Contained equipment.</Comment>
+         <Stereotype label="AggregateOf">http://langdale.com.au/2005/UML#aggregateOf</Stereotype>
+      </InverseReference>
+   </ComplexType>
+   <Root name="EquipmentContainer"
+         hideInDiagrams="false"
+         ea_guid="EAID_A09E3136_341B_4950_8F2E_7E316D8F26F3"
+         baseClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+         package="Core"
+         packageURI="http://iec.ch/TC57/CIM-generic#Package_Core"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>A modeling construct to provide a root class for containing equipment.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <SuperType name="ConnectivityNodeContainer"
+                 baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                 type="Equipment"
+                 name="Equipments"
+                 ea_guid="EAID_A36EBA13_1828_4fc9_931B_CDC27B589DF7-B"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#EquipmentContainer.Equipments"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Equipment.EquipmentContainer">
+         <Comment>Contained equipment.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+         <Stereotype label="AggregateOf">http://langdale.com.au/2005/UML#aggregateOf</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#EquipmentContainer"
+                        ea_guid="EAID_8036398C_2276_4708_A72F_F18AB50EB9C6-A"
+                        type="EquipmentContainer"
+                        name="EquipmentContainer"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#Equipment.EquipmentContainer"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                        minOccurs="0"
+                        maxOccurs="1"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Equipment"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#EquipmentContainer.Equipments">
+         <Comment>Container of this equipment.</Comment>
+         <Stereotype label="OfAggregate">http://langdale.com.au/2005/UML#ofAggregate</Stereotype>
+      </InverseReference>
+   </Root>
+   <ComplexType name="IdentifiedObject"
+                hideInDiagrams="false"
+                ea_guid="EAID_DEC8E486_212F_4cc2_A90C_89456185813F"
+                baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"
+                package="IES_Projects"
+                packageURI="http://iec.ch/TC57/CIM-generic#Package_IES_Projects"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>This is a root class to provide common identification for all classes needing identification and naming attributes.</Comment>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="mRID"
+              ea_guid="EAID_C80F3153_0018_4806_AED5_8F315937CC4F"
+              baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</Comment>
+         <Comment>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</Comment>
+         <Comment>For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="aliasName"
+              ea_guid="EAID_A630D7F0_B347_446d_96A0_CC1D8DD68761"
+              baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.aliasName"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.</Comment>
+         <Comment>The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="name"
+              ea_guid="EAID_84E2CE55_954E_4107_8B5F_AE2159356B5E"
+              baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.name"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The name is any free human readable and possibly non unique text naming the object.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+   </ComplexType>
+   <Root name="Measurement"
+         hideInDiagrams="false"
+         ea_guid="EAID_3B8422C1_42A2_4bd4_84BC_2A05B6F4855C"
+         baseClass="http://iec.ch/TC57/CIM-generic#Measurement"
+         package="IES_Projects"
+         packageURI="http://iec.ch/TC57/CIM-generic#Package_IES_Projects"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>A Measurement represents any measured, calculated or non-measured non-calculated quantity. Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.</Comment>
+      <Comment>The PSR - Measurement association is intended to capture this use of Measurement and is included in the naming hierarchy based on EquipmentContainer. The naming hierarchy typically has Measurements as leafs, e.g. Substation-VoltageLevel-Bay-Switch-Measurement.</Comment>
+      <Comment>Some Measurements represent quantities related to a particular sensor location in the network, e.g. a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator. The sensing position is not captured in the PSR - Measurement association. Instead it is captured by the Measurement - Terminal association that is used to define the sensing location in the network topology. The location is defined by the connection of the Terminal to ConductingEquipment.</Comment>
+      <Comment>If both a Terminal and PSR are associated, and the PSR is of type ConductingEquipment, the associated Terminal should belong to that ConductingEquipment instance.</Comment>
+      <Comment>When the sensor location is needed both Measurement-PSR and Measurement-Terminal are used. The Measurement-Terminal association is never used alone.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <SuperType name="IdentifiedObject"
+                 baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                 type="PowerSystemResource"
+                 name="PowerSystemResource"
+                 ea_guid="EAID_CC1B1BF5_1036_4837_898D_5D763A29273D-A"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Measurements">
+         <Comment>The power system resource that contains the measurement.</Comment>
+         <Stereotype label="OfAggregate">http://langdale.com.au/2005/UML#ofAggregate</Stereotype>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                        ea_guid="EAID_CC1B1BF5_1036_4837_898D_5D763A29273D-B"
+                        type="Measurement"
+                        name="Measurements"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Measurements"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                        minOccurs="0"
+                        maxOccurs="unbounded"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource">
+         <Comment>The measurements associated with this power system resource.</Comment>
+         <Stereotype label="AggregateOf">http://langdale.com.au/2005/UML#aggregateOf</Stereotype>
+      </InverseReference>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 type="Terminal"
+                 name="Terminal"
+                 ea_guid="EAID_1A6802B4_FBB9_4c47_8617_7052858C6F33-B"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#Measurement.Terminal"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Terminal.Measurements">
+         <Comment>One or more measurements may be associated with a terminal in the network.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                        ea_guid="EAID_A0419BD0_B15B_41cc_815B_B8D02E5A14DD-A"
+                        type="Measurement"
+                        name="Measurements"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#Terminal.Measurements"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        minOccurs="0"
+                        maxOccurs="unbounded"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Measurement.Terminal">
+         <Comment>Measurements associated with this terminal defining  where the measurement is placed in the network topology.  It may be used, for instance, to capture the sensor position, such as a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator.</Comment>
+      </InverseReference>
+   </Root>
+   <ComplexType name="PowerSystemResource"
+                hideInDiagrams="false"
+                ea_guid="EAID_E7137D2A_49EF_4d41_AA4C_E3264DA90231"
+                baseClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                package="Core"
+                packageURI="http://iec.ch/TC57/CIM-generic#Package_Core"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</Comment>
+      <SuperType name="IdentifiedObject"
+                 baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                 type="Measurement"
+                 name="Measurements"
+                 ea_guid="EAID_CC1B1BF5_1036_4837_898D_5D763A29273D-B"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Measurements"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource">
+         <Comment>The measurements associated with this power system resource.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+         <Stereotype label="AggregateOf">http://langdale.com.au/2005/UML#aggregateOf</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#PowerSystemResource"
+                        ea_guid="EAID_CC1B1BF5_1036_4837_898D_5D763A29273D-A"
+                        type="PowerSystemResource"
+                        name="PowerSystemResource"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                        minOccurs="0"
+                        maxOccurs="1"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Measurements">
+         <Comment>The power system resource that contains the measurement.</Comment>
+         <Stereotype label="OfAggregate">http://langdale.com.au/2005/UML#ofAggregate</Stereotype>
+      </InverseReference>
+   </ComplexType>
+   <Root name="Switch"
+         hideInDiagrams="false"
+         ea_guid="EAID_3D83D432_49D4_47f3_8E54_58638A2D8AE5"
+         baseClass="http://iec.ch/TC57/CIM-generic#Switch"
+         package="Wires"
+         packageURI="http://iec.ch/TC57/CIM-generic#Package_Wires"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>A generic device designed to close, or open, or both, one or more electric circuits.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <SuperType name="ConductingEquipment"
+                 baseClass="http://iec.ch/TC57/CIM-generic#ConductingEquipment"/>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#boolean"
+              xstype="boolean"
+              name="normalOpen"
+              ea_guid="EAID_D5BC219E_CADA_4d95_8F69_FD56DD7BB646"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Switch.normalOpen"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Switch"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The attribute is used in cases when no Measurement for the status value is present. If the Switch has a status measurment the Discrete.normalValue is expected to match with the Switch.normalOpen.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Domain type="CurrentFlow"
+              hideInDiagrams="false"
+              dataType="http://iec.ch/TC57/CIM-generic#CurrentFlow"
+              xstype="float"
+              name="ratedCurrent"
+              ea_guid="EAID_097C74E6_4379_4777_B5A9_9820CFC5A57E"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Switch.ratedCurrent"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Switch"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The maximum continuous current carrying capacity in amps governed by the device material and construction.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Domain>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#boolean"
+              xstype="boolean"
+              name="retained"
+              ea_guid="EAID_B4036C92_E02E_4a54_A828_907A982E4BF8"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Switch.retained"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Switch"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Branch is retained in a bus branch model.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#integer"
+              xstype="integer"
+              name="switchOnCount"
+              ea_guid="EAID_55DA4B97_BB0D_470c_908A_8239C83280BC"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Switch.switchOnCount"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Switch"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The switch on count since the switch was last reset or initialized.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+      <Simple hideInDiagrams="false"
+              dataType="http://www.w3.org/2001/XMLSchema#dateTime"
+              xstype="dateTime"
+              name="switchOnDate"
+              ea_guid="EAID_C4E1C126_DC19_4941_A221_76B25F910B5C"
+              baseProperty="http://iec.ch/TC57/CIM-generic#Switch.switchOnDate"
+              basePropertyClass="http://iec.ch/TC57/CIM-generic#Switch"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>The date and time when the switch was last switched on.</Comment>
+         <Stereotype label="Attribute">http://langdale.com.au/2005/UML#attribute</Stereotype>
+      </Simple>
+   </Root>
+   <Root name="Terminal"
+         hideInDiagrams="false"
+         ea_guid="EAID_C06E654E_B9F9_437d_9700_358A563312AC"
+         baseClass="http://iec.ch/TC57/CIM-generic#Terminal"
+         package="Core"
+         packageURI="http://iec.ch/TC57/CIM-generic#Package_Core"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>An electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <SuperType name="IdentifiedObject"
+                 baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 type="ConnectivityNode"
+                 name="ConnectivityNode"
+                 ea_guid="EAID_309A1FC9_F59D_43c4_8DB4_41BED88A88D2-B"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#Terminal.ConnectivityNode"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.Terminals">
+         <Comment>The connectivity node to which this terminal connects with zero impedance.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        ea_guid="EAID_C7E01609_F4E6_4a6e_8ACF_BDD413E62DE3-A"
+                        type="Terminal"
+                        name="Terminals"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.Terminals"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        minOccurs="0"
+                        maxOccurs="unbounded"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Terminal.ConnectivityNode">
+         <Comment>Terminals interconnected with zero impedance at a this connectivity node.</Comment>
+      </InverseReference>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                 type="Measurement"
+                 name="Measurements"
+                 ea_guid="EAID_A0419BD0_B15B_41cc_815B_B8D02E5A14DD-A"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#Terminal.Measurements"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Measurement.Terminal">
+         <Comment>Measurements associated with this terminal defining  where the measurement is placed in the network topology.  It may be used, for instance, to capture the sensor position, such as a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#Terminal"
+                        ea_guid="EAID_1A6802B4_FBB9_4c47_8617_7052858C6F33-B"
+                        type="Terminal"
+                        name="Terminal"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#Measurement.Terminal"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                        minOccurs="0"
+                        maxOccurs="1"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#Measurement"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#Terminal.Measurements">
+         <Comment>One or more measurements may be associated with a terminal in the network.</Comment>
+      </InverseReference>
+   </Root>
+   <Root name="TopologicalNode"
+         hideInDiagrams="false"
+         ea_guid="EAID_82489582_0ECB_4066_970D_A265B1065315"
+         baseClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+         package="IES_Projects"
+         packageURI="http://iec.ch/TC57/CIM-generic#Package_IES_Projects"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including  jumpers. Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).</Comment>
+      <Comment>For a planning model, switch statuses are not used to form topological nodes. Instead they are manually created or deleted in a model builder tool. Topological nodes maintained this way are also called "busses".</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <SuperType name="IdentifiedObject"
+                 baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject"/>
+      <Reference hideInDiagrams="false"
+                 baseClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                 type="ConnectivityNode"
+                 name="ConnectivityNodes"
+                 ea_guid="EAID_3BB8AC3D_F34B_45f6_9C2F_84B2AD569F0F-A"
+                 baseProperty="http://iec.ch/TC57/CIM-generic#TopologicalNode.ConnectivityNodes"
+                 basePropertyClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+                 minOccurs="0"
+                 maxOccurs="1"
+                 inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+                 inverseBaseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.TopologicalNode">
+         <Comment>The connectivity nodes combine together to form this topological node.  May depend on the current state of switches in the network.</Comment>
+         <Stereotype label="ByReference">http://langdale.com.au/2005/UML#byreference</Stereotype>
+         <Stereotype label="AggregateOf">http://langdale.com.au/2005/UML#aggregateOf</Stereotype>
+      </Reference>
+      <InverseReference hideInDiagrams="false"
+                        baseClass="http://iec.ch/TC57/CIM-generic#TopologicalNode"
+                        ea_guid="EAID_0AA1CF54_3DD3_4967_8D10_E34A4BA0DFC7-B"
+                        type="TopologicalNode"
+                        name="TopologicalNode"
+                        baseProperty="http://iec.ch/TC57/CIM-generic#ConnectivityNode.TopologicalNode"
+                        basePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        minOccurs="0"
+                        maxOccurs="1"
+                        inverseBasePropertyClass="http://iec.ch/TC57/CIM-generic#ConnectivityNode"
+                        inverseBaseProperty="http://iec.ch/TC57/CIM-generic#TopologicalNode.ConnectivityNodes">
+         <Comment>The topological node to which this connectivity node is assigned.  May depend on the current state of switches in the network.</Comment>
+         <Stereotype label="OfAggregate">http://langdale.com.au/2005/UML#ofAggregate</Stereotype>
+      </InverseReference>
+   </Root>
+   <SimpleType dataType="http://iec.ch/TC57/CIM-generic#CurrentFlow"
+               name="CurrentFlow"
+               ea_guid="EAID_DC3FD69C_E9B2_440d_A113_BE84B71BA691"
+               package="Domain"
+               packageURI="http://iec.ch/TC57/CIM-generic#Package_Domain"
+               xstype="float">
+      <Comment>Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node.</Comment>
+   </SimpleType>
+</Catalog>

@@ -1,0 +1,1236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:a="http://langdale.com.au/2005/Message#"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <head>
+      <title>Profile Documentation</title>
+      <style type="text/css">
+/* typography: fonts */
+body { font-family: arial, sans-serif; }
+
+.name, .type, .cardinality, .superclass, .xsdtype, .namespace { font-family: courier, monospace; }
+
+
+/* typography: emphasis */
+h1 { color: white; background: gray;}
+
+h2, h3 { color: gray; text-decoration: none;}
+
+h2.abstract, h2.enumerated, h2.domain {font-style: italic } 
+
+p.note { background-color: #ddd }
+
+p.declaration { color: gray }
+
+:link { color: purple; }
+
+.xsdtype { color: black; font-weight: bold; }
+
+.namespace { color: black }
+
+.package { font-size: x-large; color: gray }
+
+
+/* borders */
+div.group {
+	border-style: solid;
+	border-color: gray;
+	border-width: 1px;
+	
+}
+
+th, td {
+	border-top-style : solid;
+	border-top-width : 1px;
+	border-color: gray;
+ }
+
+
+/* spacing and alignment */
+body {padding: 5px; }
+
+h1 { padding: 5px;}
+
+div.group {
+	margin-top: 10px;
+	padding: 5px;
+	position: relative;
+}
+th, td {
+	text-align : left;
+	vertical-align : top;
+}
+th, td.type { width: 15em; overflow: visible; }
+
+p.cardinality { width: 4em; }
+
+p.package { position: absolute; right: 10px; top: 0px}				
+</style>
+   </head>
+   <body>
+      <h1>Profile Documentation</h1>
+      <p/>
+      <p class="declaration">
+					Profile namespace:
+					<span class="namespace">http://iec.ch/TC57/2007/profile#</span>
+      </p>
+      <h1>Concrete Classes</h1>
+      <div id="ConnectivityNode" class="group">
+         <a href="#ConnectivityNode">
+            <h2 class="concrete">ConnectivityNode</h2>
+         </a>
+         <p class="package">Core</p>
+         <p class="comment">Connectivity nodes are points where terminals of conducting equipment are connected together with zero impedance.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="ConnectivityNode.ConnectivityNodeContainer">ConnectivityNodeContainer</p>
+               </th>
+               <td>
+                  <p class="cardinality">1..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#ConnectivityNodeContainer">ConnectivityNodeContainer</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">Container of this connectivity node.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="ConnectivityNode.Terminals">Terminals</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Terminal">Terminal</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">Terminals interconnected with zero impedance at a this connectivity node.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="ConnectivityNode.TopologicalNode">TopologicalNode</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#TopologicalNode">TopologicalNode</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">The topological node to which this connectivity node is assigned.  May depend on the current state of switches in the network.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="EquipmentContainer" class="group">
+         <a href="#EquipmentContainer">
+            <h2 class="concrete">EquipmentContainer</h2>
+         </a>
+         <p class="package">Core</p>
+         <p class="comment">A modeling construct to provide a root class for containing equipment.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="EquipmentContainer.Equipments">Equipments</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Equipment">Equipment</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">Contained equipment.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table/>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#PowerSystemResource.Measurements">PowerSystemResource</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="Measurement" class="group">
+         <a href="#Measurement">
+            <h2 class="concrete">Measurement</h2>
+         </a>
+         <p class="package">IES_Projects</p>
+         <p class="comment">A Measurement represents any measured, calculated or non-measured non-calculated quantity. Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.</p>
+         <p class="comment">The PSR - Measurement association is intended to capture this use of Measurement and is included in the naming hierarchy based on EquipmentContainer. The naming hierarchy typically has Measurements as leafs, e.g. Substation-VoltageLevel-Bay-Switch-Measurement.</p>
+         <p class="comment">Some Measurements represent quantities related to a particular sensor location in the network, e.g. a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator. The sensing position is not captured in the PSR - Measurement association. Instead it is captured by the Measurement - Terminal association that is used to define the sensing location in the network topology. The location is defined by the connection of the Terminal to ConductingEquipment.</p>
+         <p class="comment">If both a Terminal and PSR are associated, and the PSR is of type ConductingEquipment, the associated Terminal should belong to that ConductingEquipment instance.</p>
+         <p class="comment">When the sensor location is needed both Measurement-PSR and Measurement-Terminal are used. The Measurement-Terminal association is never used alone.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="Measurement.PowerSystemResource">PowerSystemResource</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#PowerSystemResource">PowerSystemResource</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">The power system resource that contains the measurement.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Measurement.Terminal">Terminal</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Terminal">Terminal</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">One or more measurements may be associated with a terminal in the network.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="Switch" class="group">
+         <a href="#Switch">
+            <h2 class="concrete">Switch</h2>
+         </a>
+         <p class="package">Wires</p>
+         <p class="comment">A generic device designed to close, or open, or both, one or more electric circuits.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="Switch.normalOpen">normalOpen</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p class="comment">The attribute is used in cases when no Measurement for the status value is present. If the Switch has a status measurment the Discrete.normalValue is expected to match with the Switch.normalOpen.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Switch.ratedCurrent">ratedCurrent</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#CurrentFlow">CurrentFlow</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">The maximum continuous current carrying capacity in amps governed by the device material and construction.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Switch.retained">retained</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p class="comment">Branch is retained in a bus branch model.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Switch.switchOnCount">switchOnCount</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">integer</p>
+               </td>
+               <td>
+                  <p class="comment">The switch on count since the switch was last reset or initialized.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Switch.switchOnDate">switchOnDate</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">dateTime</p>
+               </td>
+               <td>
+                  <p class="comment">The date and time when the switch was last switched on.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">Terminals</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Terminal">Terminal</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#ConductingEquipment.Terminals">ConductingEquipment</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">aggregate</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#Equipment.aggregate">Equipment</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">normallyInService</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#Equipment.normallyInService">Equipment</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">EquipmentContainer</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#EquipmentContainer">EquipmentContainer</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#Equipment.EquipmentContainer">Equipment</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#PowerSystemResource.Measurements">PowerSystemResource</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="Terminal" class="group">
+         <a href="#Terminal">
+            <h2 class="concrete">Terminal</h2>
+         </a>
+         <p class="package">Core</p>
+         <p class="comment">An electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="Terminal.ConnectivityNode">ConnectivityNode</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#ConnectivityNode">ConnectivityNode</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">The connectivity node to which this terminal connects with zero impedance.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Terminal.Measurements">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">Measurements associated with this terminal defining  where the measurement is placed in the network topology.  It may be used, for instance, to capture the sensor position, such as a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="TopologicalNode" class="group">
+         <a href="#TopologicalNode">
+            <h2 class="concrete">TopologicalNode</h2>
+         </a>
+         <p class="package">IES_Projects</p>
+         <p class="comment">For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including  jumpers. Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).</p>
+         <p class="comment">For a planning model, switch statuses are not used to form topological nodes. Instead they are manually created or deleted in a model builder tool. Topological nodes maintained this way are also called "busses".</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="TopologicalNode.ConnectivityNodes">ConnectivityNodes</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#ConnectivityNode">ConnectivityNode</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">The connectivity nodes combine together to form this topological node.  May depend on the current state of switches in the network.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <h1>Abstract Classes</h1>
+      <div id="ConductingEquipment" class="group">
+         <a href="#ConductingEquipment">
+            <h2 class="abstract">ConductingEquipment</h2>
+         </a>
+         <p class="package">Core</p>
+         <p class="comment">The parts of the power system that are designed to carry current or that are conductively connected through terminals.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="ConductingEquipment.Terminals">Terminals</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Terminal">Terminal</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">aggregate</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#Equipment.aggregate">Equipment</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">normallyInService</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#Equipment.normallyInService">Equipment</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">EquipmentContainer</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#EquipmentContainer">EquipmentContainer</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#Equipment.EquipmentContainer">Equipment</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#PowerSystemResource.Measurements">PowerSystemResource</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="ConnectivityNodeContainer" class="group">
+         <a href="#ConnectivityNodeContainer">
+            <h2 class="abstract">ConnectivityNodeContainer</h2>
+         </a>
+         <p class="package">IES_Projects</p>
+         <p class="comment">A base class for all objects that may contain connectivity nodes or topological nodes.</p>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#PowerSystemResource.Measurements">PowerSystemResource</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="Equipment" class="group">
+         <a href="#Equipment">
+            <h2 class="abstract">Equipment</h2>
+         </a>
+         <p class="package">Core</p>
+         <p class="comment">The parts of a power system that are physical devices, electronic or mechanical.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="Equipment.aggregate">aggregate</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p class="comment">The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.  Examples would be power transformers or sychronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Equipment.normallyInService">normallyInService</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">boolean</p>
+               </td>
+               <td>
+                  <p class="comment">If true, the equipment is normally in service.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="Equipment.EquipmentContainer">EquipmentContainer</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#EquipmentContainer">EquipmentContainer</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">Container of this equipment.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#PowerSystemResource.Measurements">PowerSystemResource</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="IdentifiedObject" class="group">
+         <a href="#IdentifiedObject">
+            <h2 class="abstract">IdentifiedObject</h2>
+         </a>
+         <p class="package">IES_Projects</p>
+         <p class="comment">This is a root class to provide common identification for all classes needing identification and naming attributes.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="IdentifiedObject.mRID">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p class="comment">Master resource identifier issued by a model authority. The mRID is globally unique within an exchange context.</p>
+                  <p class="comment">Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</p>
+                  <p class="comment">For CIMXML data files in RDF syntax, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="IdentifiedObject.aliasName">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p class="comment">The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.</p>
+                  <p class="comment">The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name" id="IdentifiedObject.name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p class="comment">The name is any free human readable and possibly non unique text naming the object.</p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <div id="PowerSystemResource" class="group">
+         <a href="#PowerSystemResource">
+            <h2 class="abstract">PowerSystemResource</h2>
+         </a>
+         <p class="package">Core</p>
+         <p class="comment">A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</p>
+         <h3>Native Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name" id="PowerSystemResource.Measurements">Measurements</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">
+                     <a href="#Measurement">Measurement</a>
+                  </p>
+               </td>
+               <td>
+                  <p class="comment">The measurements associated with this power system resource.</p>
+               </td>
+            </tr>
+         </table>
+         <h3>Inherited Members</h3>
+         <table>
+            <tr>
+               <th>
+                  <p class="name">mRID</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.mRID">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">aliasName</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.aliasName">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+            <tr>
+               <th>
+                  <p class="name">name</p>
+               </th>
+               <td>
+                  <p class="cardinality">0..1</p>
+               </td>
+               <td class="type">
+                  <p class="type">string</p>
+               </td>
+               <td>
+                  <p>see <a class="superclass" href="#IdentifiedObject.name">IdentifiedObject</a>
+                  </p>
+               </td>
+            </tr>
+         </table>
+      </div>
+      <h1>Enumerations</h1>
+      <h1>Compound Types</h1>
+      <h1>Datatypes</h1>
+      <div id="CurrentFlow" class="group">
+         <a href="#CurrentFlow">
+            <h2 class="domain">CurrentFlow</h2>
+         </a>
+         <p class="package">Domain</p>
+         <p class="comment">Electrical current with sign convention: positive flow is out of the conducting equipment into the connectivity node.</p>
+         <p class="declaration">XSD type: <span class="xsdtype">float</span>
+         </p>
+      </div>
+   </body>
+</html>
