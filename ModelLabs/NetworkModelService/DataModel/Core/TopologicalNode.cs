@@ -1,28 +1,28 @@
-﻿using FTN.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FTN.Common;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public class PowerSystemResource : IdentifiedObject
+    public class TopologicalNode : IdentifiedObject
     {
-        private List<long> measurments = new List<long>();
+        private List<long> connectivityNodes = new List<long>();
 
-        public PowerSystemResource(long globalId) : base(globalId)
+        public TopologicalNode(long globalId) : base(globalId)
         {
         }
 
-        public List<long> Measurments
+        public List<long> ConnectivityNodes
         {
-            get { return measurments; }
-            set { measurments = value; }
+            get { return connectivityNodes; }
+            set { connectivityNodes = value; }
         }
 
         public override bool Equals(object obj)
         {
             if (base.Equals(obj))
             {
-                PowerSystemResource x = (PowerSystemResource)obj;
-                return CompareHelper.CompareLists(x.measurments, this.measurments);
+                TopologicalNode x = (TopologicalNode)obj;
+                return CompareHelper.CompareLists(x.connectivityNodes, this.connectivityNodes);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property)
             {
-                case ModelCode.PSR_MEASURMENTS:
+                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
                     return true;
 
                 default:
@@ -53,8 +53,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (prop.Id)
             {
-                case ModelCode.PSR_MEASURMENTS:
-                    prop.SetValue(measurments);
+                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                    prop.SetValue(connectivityNodes);
                     break;
 
                 default:
@@ -67,7 +67,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property.Id)
             {
-                // No properties to set for lists (they are handled via references)
+                // lists are handled via references, so nothing here
                 default:
                     base.SetProperty(property);
                     break;
@@ -82,15 +82,17 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             get
             {
-                return measurments.Count > 0 || base.IsReferenced;
+                return connectivityNodes.Count > 0 || base.IsReferenced;
             }
         }
 
         public override void GetReferences(Dictionary<ModelCode, List<long>> references, TypeOfReference refType)
         {
-            if (measurments != null && measurments.Count > 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
+            if (connectivityNodes != null && connectivityNodes.Count > 0 &&
+                (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
             {
-                references[ModelCode.PSR_MEASURMENTS] = measurments.GetRange(0, measurments.Count);
+                references[ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES] =
+                    connectivityNodes.GetRange(0, connectivityNodes.Count);
             }
 
             base.GetReferences(references, refType);
@@ -100,8 +102,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASURMENTS:
-                    measurments.Add(globalId);
+                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                    connectivityNodes.Add(globalId);
                     break;
 
                 default:
@@ -114,14 +116,16 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASURMENTS:
-                    if (measurments.Contains(globalId))
+                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                    if (connectivityNodes.Contains(globalId))
                     {
-                        measurments.Remove(globalId);
+                        connectivityNodes.Remove(globalId);
                     }
                     else
                     {
-                        CommonTrace.WriteTrace(CommonTrace.TraceWarning, "Entity (GID = 0x{0:x16}) doesn't contain reference 0x{1:x16}.", this.GlobalId, globalId);
+                        CommonTrace.WriteTrace(CommonTrace.TraceWarning,
+                            "Entity (GID = 0x{0:x16}) doesn't contain reference 0x{1:x16}.",
+                            this.GlobalId, globalId);
                     }
                     break;
 

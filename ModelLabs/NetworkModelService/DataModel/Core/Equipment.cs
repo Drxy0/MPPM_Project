@@ -1,63 +1,52 @@
-﻿using System;
+﻿using FTN.Common;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml;
-using FTN.Common;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
 	public class Equipment : PowerSystemResource
 	{		
-		private bool isUnderground;
-		private bool isPrivate;
-						
-		public Equipment(long globalId) : base(globalId) 
-		{
-		}
-	
-		public bool IsUnderground
-		{
-			get
-			{
-				return isUnderground;
-			}
+		private bool aggregate;
+        private bool normallyInService;
+        private long equipmentContainer = 0;
 
-			set
-			{
-				isUnderground = value;
-			}
-		}
+        public Equipment(long globalId) : base(globalId)
+        {
+        }
 
-		public bool IsPrivate
-		{
-			get 
-			{
-				return isPrivate; 
-			}
-			
-			set
-			{ 
-				isPrivate = value; 
-			}
-		}
+        public bool Aggregate
+        {
+            get { return aggregate; }
+            set { aggregate = value; }
+        }
 
-		public override bool Equals(object obj)
-		{
+        public bool NormallyInService
+        {
+            get { return normallyInService; }
+            set { normallyInService = value; }
+        }
+
+        public long EquipmentContainer
+        {
+            get { return equipmentContainer; }
+            set { equipmentContainer = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
 			if (base.Equals(obj))
 			{
 				Equipment x = (Equipment)obj;
-				return ((x.isUnderground == this.isUnderground) &&
-						(x.isPrivate == this.isPrivate));
-			}
+
+                return (x.aggregate == this.aggregate) &&
+                       (x.normallyInService == this.normallyInService) &&
+                       (x.equipmentContainer == this.equipmentContainer);
+            }
 			else
 			{
 				return false;
 			}
-		}
-
+        }
+	
 		public override int GetHashCode()
 		{
 			return base.GetHashCode();
@@ -69,9 +58,9 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		{
 			switch (property)
 			{
-				case ModelCode.EQUIPMENT_ISUNDERGROUND:
-				case ModelCode.EQUIPMENT_ISPRIVATE:
-		
+				case ModelCode.EQUIPMENT_AGGREGATE:
+				case ModelCode.EQUIPMENT_NORMALLYINSERVICE:
+				case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
 					return true;
 				default:
 					return base.HasProperty(property);
@@ -82,15 +71,19 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		{
 			switch (property.Id)
 			{
-				case ModelCode.EQUIPMENT_ISUNDERGROUND:
-					property.SetValue(isUnderground);
+				case ModelCode.EQUIPMENT_AGGREGATE:
+					property.SetValue(aggregate);
 					break;
 
-				case ModelCode.EQUIPMENT_ISPRIVATE:
-					property.SetValue(isPrivate);
-					break;			
+				case ModelCode.EQUIPMENT_NORMALLYINSERVICE:
+					property.SetValue(normallyInService);
+					break;
 
-				default:
+                case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
+                    property.SetValue(equipmentContainer);
+                    break;
+
+                default:
 					base.GetProperty(property);
 					break;
 			}
@@ -100,20 +93,66 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 		{
 			switch (property.Id)
 			{
-				case ModelCode.EQUIPMENT_ISUNDERGROUND:					
-					isUnderground = property.AsBool();
+				case ModelCode.EQUIPMENT_AGGREGATE:
+                    aggregate = property.AsBool();
 					break;
 
-				case ModelCode.EQUIPMENT_ISPRIVATE:
-					isPrivate = property.AsBool();
+				case ModelCode.EQUIPMENT_NORMALLYINSERVICE:
+                    normallyInService = property.AsBool();
 					break;
-			
-				default:
+                
+				case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
+                    equipmentContainer = property.AsLong();
+                    break;
+
+                default:
 					base.SetProperty(property);
 					break;
 			}
-		}		
+		}
 
-		#endregion IAccess implementation
-	}
+        #endregion IAccess implementation
+        #region IReference implementation
+
+        public override bool IsReferenced
+        {
+            get
+            {
+                return equipmentContainer != 0 || base.IsReferenced;
+            }
+        }
+
+        public override void GetReferences(Dictionary<ModelCode, List<long>> references, TypeOfReference refType)
+        {
+            if (equipmentContainer != 0 && (refType == TypeOfReference.Reference || refType == TypeOfReference.Both))
+            {
+                references[ModelCode.EQUIPMENT_EQUIPMENTCONTAINER] = new List<long>();
+                references[ModelCode.EQUIPMENT_EQUIPMENTCONTAINER].Add(equipmentContainer);
+            }
+
+            base.GetReferences(references, refType);
+        }
+
+        public override void AddReference(ModelCode referenceId, long globalId)
+        {
+            switch (referenceId)
+            {
+                default:
+                    base.AddReference(referenceId, globalId);
+                    break;
+            }
+        }
+
+        public override void RemoveReference(ModelCode referenceId, long globalId)
+        {
+            switch (referenceId)
+            {
+                default:
+                    base.RemoveReference(referenceId, globalId);
+                    break;
+            }
+        }
+
+        #endregion IReference implementation
+    }
 }

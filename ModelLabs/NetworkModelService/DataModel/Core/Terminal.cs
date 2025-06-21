@@ -1,14 +1,22 @@
-﻿using FTN.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FTN.Common;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public class PowerSystemResource : IdentifiedObject
+    public class Terminal : IdentifiedObject
     {
+        private long connectivityNode = 0;
         private List<long> measurments = new List<long>();
+        private long conductingEquipment = 0;
 
-        public PowerSystemResource(long globalId) : base(globalId)
+        public Terminal(long globalId) : base(globalId)
         {
+        }
+
+        public long ConnectivityNode
+        {
+            get { return connectivityNode; }
+            set { connectivityNode = value; }
         }
 
         public List<long> Measurments
@@ -17,12 +25,20 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             set { measurments = value; }
         }
 
+        public long ConductingEquipment
+        {
+            get { return conductingEquipment; }
+            set { conductingEquipment = value; }
+        }
+
         public override bool Equals(object obj)
         {
             if (base.Equals(obj))
             {
-                PowerSystemResource x = (PowerSystemResource)obj;
-                return CompareHelper.CompareLists(x.measurments, this.measurments);
+                Terminal x = (Terminal)obj;
+                return (x.connectivityNode == this.connectivityNode) &&
+                       (x.conductingEquipment == this.conductingEquipment) &&
+                       CompareHelper.CompareLists(x.measurments, this.measurments);
             }
             else
             {
@@ -41,7 +57,9 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property)
             {
-                case ModelCode.PSR_MEASURMENTS:
+                case ModelCode.TERMINAL_CONNECTIVITYNODE:
+                case ModelCode.TERMINAL_MEASURMENTS:
+                case ModelCode.TERMINAL_CONDEQ:
                     return true;
 
                 default:
@@ -53,8 +71,16 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (prop.Id)
             {
-                case ModelCode.PSR_MEASURMENTS:
+                case ModelCode.TERMINAL_CONNECTIVITYNODE:
+                    prop.SetValue(connectivityNode);
+                    break;
+
+                case ModelCode.TERMINAL_MEASURMENTS:
                     prop.SetValue(measurments);
+                    break;
+
+                case ModelCode.TERMINAL_CONDEQ:
+                    prop.SetValue(conductingEquipment);
                     break;
 
                 default:
@@ -67,7 +93,15 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property.Id)
             {
-                // No properties to set for lists (they are handled via references)
+                case ModelCode.TERMINAL_CONNECTIVITYNODE:
+                    connectivityNode = property.AsLong();
+                    break;
+
+                case ModelCode.TERMINAL_CONDEQ:
+                    conductingEquipment = property.AsLong();
+                    break;
+
+                // No property setter for lists (handled via references)
                 default:
                     base.SetProperty(property);
                     break;
@@ -82,15 +116,30 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             get
             {
-                return measurments.Count > 0 || base.IsReferenced;
+                return connectivityNode != 0 ||
+                       conductingEquipment != 0 ||
+                       measurments.Count > 0 ||
+                       base.IsReferenced;
             }
         }
 
         public override void GetReferences(Dictionary<ModelCode, List<long>> references, TypeOfReference refType)
         {
+            if (connectivityNode != 0 && (refType == TypeOfReference.Reference || refType == TypeOfReference.Both))
+            {
+                references[ModelCode.TERMINAL_CONNECTIVITYNODE] = new List<long>();
+                references[ModelCode.TERMINAL_CONNECTIVITYNODE].Add(connectivityNode);
+            }
+
+            if (conductingEquipment != 0 && (refType == TypeOfReference.Reference || refType == TypeOfReference.Both))
+            {
+                references[ModelCode.TERMINAL_CONDEQ] = new List<long>();
+                references[ModelCode.TERMINAL_CONDEQ].Add(conductingEquipment);
+            }
+
             if (measurments != null && measurments.Count > 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
             {
-                references[ModelCode.PSR_MEASURMENTS] = measurments.GetRange(0, measurments.Count);
+                references[ModelCode.TERMINAL_MEASURMENTS] = measurments.GetRange(0, measurments.Count);
             }
 
             base.GetReferences(references, refType);
@@ -100,7 +149,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASURMENTS:
+                case ModelCode.TERMINAL_MEASURMENTS:
                     measurments.Add(globalId);
                     break;
 
@@ -114,7 +163,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASURMENTS:
+                case ModelCode.TERMINAL_MEASURMENTS:
                     if (measurments.Contains(globalId))
                     {
                         measurments.Remove(globalId);
