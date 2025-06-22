@@ -5,9 +5,9 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 {
     public class ConnectivityNode : IdentifiedObject
     {
-        private long topologicalNode = 0;
-        private List<long> terminals = new List<long>();
-        private long connectivityNodeContainer = 0;
+        private long topologicalNode = 0;                   // 0 9 reference
+        private List<long> terminals = new List<long>();    // 1 9 reference
+        private long connectivityNodeContainer = 0;         // 0 9 reference
         public ConnectivityNode(long globalId) : base(globalId)
         {
         }

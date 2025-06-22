@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public class Measurment : IdentifiedObject
+    public class Measurement : IdentifiedObject
     {
         private long terminal = 0;
         private long powerSystemResource = 0;
 
-        public Measurment(long globalId) : base(globalId)
+        public Measurement(long globalId) : base(globalId)
         {
         }
 
@@ -28,7 +28,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             if (base.Equals(obj))
             {
-                Measurment x = (Measurment)obj;
+                Measurement x = (Measurement)obj;
                 return (x.terminal == this.terminal) &&
                        (x.powerSystemResource == this.powerSystemResource);
             }
@@ -49,8 +49,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property)
             {
-                case ModelCode.MEASURMENT_TERMINAL:
-                case ModelCode.MEASURMENT_PSR:
+                case ModelCode.MEASUREMENT_TERMINAL:
+                case ModelCode.MEASUREMENT_PSR:
                     return true;
 
                 default:
@@ -62,11 +62,11 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (prop.Id)
             {
-                case ModelCode.MEASURMENT_TERMINAL:
+                case ModelCode.MEASUREMENT_TERMINAL:
                     prop.SetValue(terminal);
                     break;
 
-                case ModelCode.MEASURMENT_PSR:
+                case ModelCode.MEASUREMENT_PSR:
                     prop.SetValue(powerSystemResource);
                     break;
 
@@ -80,11 +80,11 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property.Id)
             {
-                case ModelCode.MEASURMENT_TERMINAL:
+                case ModelCode.MEASUREMENT_TERMINAL:
                     terminal = property.AsLong();
                     break;
 
-                case ModelCode.MEASURMENT_PSR:
+                case ModelCode.MEASUREMENT_PSR:
                     powerSystemResource = property.AsLong();
                     break;
 
@@ -110,14 +110,14 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             if (terminal != 0 && (refType == TypeOfReference.Reference || refType == TypeOfReference.Both))
             {
-                references[ModelCode.MEASURMENT_TERMINAL] = new List<long>();
-                references[ModelCode.MEASURMENT_TERMINAL].Add(terminal);
+                references[ModelCode.MEASUREMENT_TERMINAL] = new List<long>();
+                references[ModelCode.MEASUREMENT_TERMINAL].Add(terminal);
             }
 
             if (powerSystemResource != 0 && (refType == TypeOfReference.Reference || refType == TypeOfReference.Both))
             {
-                references[ModelCode.MEASURMENT_PSR] = new List<long>();
-                references[ModelCode.MEASURMENT_PSR].Add(powerSystemResource);
+                references[ModelCode.MEASUREMENT_PSR] = new List<long>();
+                references[ModelCode.MEASUREMENT_PSR].Add(powerSystemResource);
             }
 
             base.GetReferences(references, refType);

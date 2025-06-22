@@ -5,16 +5,16 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 {
     public class PowerSystemResource : IdentifiedObject
     {
-        private List<long> measurments = new List<long>();
+        private List<long> measurements = new List<long>();
 
         public PowerSystemResource(long globalId) : base(globalId)
         {
         }
 
-        public List<long> Measurments
+        public List<long> Measurements
         {
-            get { return measurments; }
-            set { measurments = value; }
+            get { return measurements; }
+            set { measurements = value; }
         }
 
         public override bool Equals(object obj)
@@ -22,7 +22,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             if (base.Equals(obj))
             {
                 PowerSystemResource x = (PowerSystemResource)obj;
-                return CompareHelper.CompareLists(x.measurments, this.measurments);
+                return CompareHelper.CompareLists(x.measurements, this.measurements);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property)
             {
-                case ModelCode.PSR_MEASURMENTS:
+                case ModelCode.PSR_MEASUREMENTS:
                     return true;
 
                 default:
@@ -53,8 +53,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (prop.Id)
             {
-                case ModelCode.PSR_MEASURMENTS:
-                    prop.SetValue(measurments);
+                case ModelCode.PSR_MEASUREMENTS:
+                    prop.SetValue(measurements);
                     break;
 
                 default:
@@ -82,15 +82,15 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             get
             {
-                return measurments.Count > 0 || base.IsReferenced;
+                return measurements.Count > 0 || base.IsReferenced;
             }
         }
 
         public override void GetReferences(Dictionary<ModelCode, List<long>> references, TypeOfReference refType)
         {
-            if (measurments != null && measurments.Count > 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
+            if (measurements != null && measurements.Count > 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
             {
-                references[ModelCode.PSR_MEASURMENTS] = measurments.GetRange(0, measurments.Count);
+                references[ModelCode.PSR_MEASUREMENTS] = measurements.GetRange(0, measurements.Count);
             }
 
             base.GetReferences(references, refType);
@@ -100,8 +100,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASURMENTS:
-                    measurments.Add(globalId);
+                case ModelCode.PSR_MEASUREMENTS:
+                    measurements.Add(globalId);
                     break;
 
                 default:
@@ -114,10 +114,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASURMENTS:
-                    if (measurments.Contains(globalId))
+                case ModelCode.PSR_MEASUREMENTS:
+                    if (measurements.Contains(globalId))
                     {
-                        measurments.Remove(globalId);
+                        measurements.Remove(globalId);
                     }
                     else
                     {

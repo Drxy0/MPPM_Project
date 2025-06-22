@@ -3,26 +3,26 @@ using FTN.Common;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public class TopologicalNode : IdentifiedObject
+    public class EquipmentContainer : ConnectivityNodeContainer
     {
-        private List<long> connectivityNodes = new List<long>();
-        
-        public TopologicalNode(long globalId) : base(globalId)
+        private List<long> equipments = new List<long>();
+
+        public EquipmentContainer(long globalId) : base(globalId)
         {
         }
 
-        public List<long> ConnectivityNodes
+        public List<long> Equipments
         {
-            get { return connectivityNodes; }
-            set { connectivityNodes = value; }
+            get { return equipments; }
+            set { equipments = value; }
         }
 
         public override bool Equals(object obj)
         {
             if (base.Equals(obj))
             {
-                TopologicalNode x = (TopologicalNode)obj;
-                return CompareHelper.CompareLists(x.connectivityNodes, this.connectivityNodes);
+                EquipmentContainer x = (EquipmentContainer)obj;
+                return CompareHelper.CompareLists(x.equipments, this.equipments);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                case ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS:
                     return true;
 
                 default:
@@ -53,8 +53,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (prop.Id)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
-                    prop.SetValue(connectivityNodes);
+                case ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS:
+                    prop.SetValue(equipments);
                     break;
 
                 default:
@@ -67,7 +67,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property.Id)
             {
-                // lists are handled via references, so nothing here
+                // No properties to set for lists (handled via references)
                 default:
                     base.SetProperty(property);
                     break;
@@ -82,17 +82,17 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             get
             {
-                return connectivityNodes.Count > 0 || base.IsReferenced;
+                return equipments.Count > 0 || base.IsReferenced;
             }
         }
 
         public override void GetReferences(Dictionary<ModelCode, List<long>> references, TypeOfReference refType)
         {
-            if (connectivityNodes != null && connectivityNodes.Count > 0 &&
+            if (equipments != null && equipments.Count > 0 &&
                 (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
             {
-                references[ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES] =
-                    connectivityNodes.GetRange(0, connectivityNodes.Count);
+                references[ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS] =
+                    equipments.GetRange(0, equipments.Count);
             }
 
             base.GetReferences(references, refType);
@@ -102,8 +102,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
-                    connectivityNodes.Add(globalId);
+                case ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS:
+                    equipments.Add(globalId);
                     break;
 
                 default:
@@ -116,10 +116,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
-                    if (connectivityNodes.Contains(globalId))
+                case ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS:
+                    if (equipments.Contains(globalId))
                     {
-                        connectivityNodes.Remove(globalId);
+                        equipments.Remove(globalId);
                     }
                     else
                     {

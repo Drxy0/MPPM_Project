@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml;
 using FTN.Common;
 using FTN.Services.NetworkModelService.DataModel.Core;
 using FTN.Services.NetworkModelService.DataModel.Wires;
-using FTN.Services.NetworkModelService.DataModel;
-
 
 namespace FTN.Services.NetworkModelService
 {		
@@ -122,24 +114,26 @@ namespace FTN.Services.NetworkModelService
 			IdentifiedObject io = null;			
 			switch ((DMSType)type)
 			{
-				case DMSType.BASEVOLTAGE:
-					io = new BaseVoltage(globalId);
+				case DMSType.TOPOLOGICALNODE:
+					io = new TopologicalNode(globalId);
 					break;
+				case DMSType.CONNECTIVITYNODE:
+					io = new ConnectivityNode(globalId);
+					break;
+				case DMSType.TERMINAL:
+					io = new Terminal(globalId);
+					break;
+				case DMSType.MEASUREMENT:
+					io = new Measurement(globalId);
+					break;
+				case DMSType.EQUIPMENTCONTAINER:
+					io = new EquipmentContainer(globalId);
+					break;
+                case DMSType.SWITCH:
+                    io = new Switch(globalId);
+                    break;
 
-				case DMSType.LOCATION:
-					io = new Location(globalId);
-					break;
-				case DMSType.POWERTR:
-					io = new PowerTransformer(globalId);
-					break;
-				case DMSType.POWERTRWINDING:
-					io = new TransformerWinding(globalId);
-					break;
-				case DMSType.WINDINGTEST:
-					io = new WindingTest(globalId);
-					break;			
-
-				default:					
+                default:					
 					string message = String.Format("Failed to create entity because specified type ({0}) is not supported.", type);
 					CommonTrace.WriteTrace(CommonTrace.TraceError, message);
 					throw new Exception(message);					

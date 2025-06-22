@@ -12,7 +12,7 @@ namespace FTN.Common
         TOPOLOGICALNODE                     = 0x0001,
         CONNECTIVITYNODE                    = 0x0002,
         TERMINAL                            = 0x0003,
-        MEASURMENT                          = 0x0004,
+        MEASUREMENT                         = 0x0004,
         EQUIPMENTCONTAINER                  = 0x0005,
         SWITCH                              = 0x0006,
     }
@@ -36,15 +36,15 @@ namespace FTN.Common
 
         TERMINAL							= 0x1300000000030000,
         TERMINAL_CONNECTIVITYNODE			= 0x1300000000030109,
-        TERMINAL_MEASURMENTS				= 0x1300000000030219,
+        TERMINAL_MEASUREMENTS				= 0x1300000000030219,
         TERMINAL_CONDEQ		                = 0x1300000000030309,
 
-        MEASURMENT							= 0x1400000000040000,
-        MEASURMENT_TERMINAL					= 0x1400000000040109,
-        MEASURMENT_PSR						= 0x1400000000040209,
+        MEASUREMENT							= 0x1400000000040000,
+        MEASUREMENT_TERMINAL				= 0x1400000000040109,
+        MEASUREMENT_PSR						= 0x1400000000040209,
 
         PSR									= 0x1500000000000000,
-        PSR_MEASURMENTS						= 0x1500000000000119,
+        PSR_MEASUREMENTS					= 0x1500000000000119,
 
         EQUIPMENT							= 0x1510000000000000,
         EQUIPMENT_AGGREGATE					= 0x1510000000000101,

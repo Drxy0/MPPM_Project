@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.ServiceModel;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using System.IO;
 using System.Xml;
-using System.Threading;
-using System.Diagnostics;
 using FTN.Common;
 using FTN.ServiceContracts;
 using FTN.Services.NetworkModelService.TestClient;
@@ -164,7 +157,7 @@ namespace TelventDMS.Services.NetworkModelService.TestClient.Tests
 			try
 			{						
 				List<ModelCode> properties = new List<ModelCode>();
-                properties.Add(ModelCode.IDOBJ_DESCRIPTION);
+                properties.Add(ModelCode.IDOBJ_ALIASNAME);
                 properties.Add(ModelCode.IDOBJ_MRID);
                 properties.Add(ModelCode.IDOBJ_NAME);
 						

@@ -3,11 +3,11 @@ using FTN.Common;
 
 namespace FTN.Services.NetworkModelService.DataModel.Core
 {
-    public class TopologicalNode : IdentifiedObject
+    public class ConnectivityNodeContainer : PowerSystemResource
     {
         private List<long> connectivityNodes = new List<long>();
-        
-        public TopologicalNode(long globalId) : base(globalId)
+
+        public ConnectivityNodeContainer(long globalId) : base(globalId)
         {
         }
 
@@ -21,7 +21,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             if (base.Equals(obj))
             {
-                TopologicalNode x = (TopologicalNode)obj;
+                ConnectivityNodeContainer x = (ConnectivityNodeContainer)obj;
                 return CompareHelper.CompareLists(x.connectivityNodes, this.connectivityNodes);
             }
             else
@@ -41,7 +41,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                case ModelCode.CNC_CONNECTIVITYNODES:
                     return true;
 
                 default:
@@ -53,7 +53,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (prop.Id)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                case ModelCode.CNC_CONNECTIVITYNODES:
                     prop.SetValue(connectivityNodes);
                     break;
 
@@ -67,7 +67,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property.Id)
             {
-                // lists are handled via references, so nothing here
+                // No properties to set for lists (handled via references)
                 default:
                     base.SetProperty(property);
                     break;
@@ -91,7 +91,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             if (connectivityNodes != null && connectivityNodes.Count > 0 &&
                 (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
             {
-                references[ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES] =
+                references[ModelCode.CNC_CONNECTIVITYNODES] =
                     connectivityNodes.GetRange(0, connectivityNodes.Count);
             }
 
@@ -102,7 +102,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                case ModelCode.CNC_CONNECTIVITYNODES:
                     connectivityNodes.Add(globalId);
                     break;
 
@@ -116,7 +116,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                case ModelCode.CNC_CONNECTIVITYNODES:
                     if (connectivityNodes.Contains(globalId))
                     {
                         connectivityNodes.Remove(globalId);

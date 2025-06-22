@@ -6,7 +6,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
     public class Terminal : IdentifiedObject
     {
         private long connectivityNode = 0;
-        private List<long> measurments = new List<long>();
+        private List<long> measurements = new List<long>();
         private long conductingEquipment = 0;
 
         public Terminal(long globalId) : base(globalId)
@@ -19,10 +19,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             set { connectivityNode = value; }
         }
 
-        public List<long> Measurments
+        public List<long> Measurements
         {
-            get { return measurments; }
-            set { measurments = value; }
+            get { return measurements; }
+            set { measurements = value; }
         }
 
         public long ConductingEquipment
@@ -38,7 +38,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
                 Terminal x = (Terminal)obj;
                 return (x.connectivityNode == this.connectivityNode) &&
                        (x.conductingEquipment == this.conductingEquipment) &&
-                       CompareHelper.CompareLists(x.measurments, this.measurments);
+                       CompareHelper.CompareLists(x.measurements, this.measurements);
             }
             else
             {
@@ -58,7 +58,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             switch (property)
             {
                 case ModelCode.TERMINAL_CONNECTIVITYNODE:
-                case ModelCode.TERMINAL_MEASURMENTS:
+                case ModelCode.TERMINAL_MEASUREMENTS:
                 case ModelCode.TERMINAL_CONDEQ:
                     return true;
 
@@ -75,8 +75,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
                     prop.SetValue(connectivityNode);
                     break;
 
-                case ModelCode.TERMINAL_MEASURMENTS:
-                    prop.SetValue(measurments);
+                case ModelCode.TERMINAL_MEASUREMENTS:
+                    prop.SetValue(measurements);
                     break;
 
                 case ModelCode.TERMINAL_CONDEQ:
@@ -118,7 +118,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             {
                 return connectivityNode != 0 ||
                        conductingEquipment != 0 ||
-                       measurments.Count > 0 ||
+                       measurements.Count > 0 ||
                        base.IsReferenced;
             }
         }
@@ -137,9 +137,9 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
                 references[ModelCode.TERMINAL_CONDEQ].Add(conductingEquipment);
             }
 
-            if (measurments != null && measurments.Count > 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
+            if (measurements != null && measurements.Count > 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))
             {
-                references[ModelCode.TERMINAL_MEASURMENTS] = measurments.GetRange(0, measurments.Count);
+                references[ModelCode.TERMINAL_MEASUREMENTS] = measurements.GetRange(0, measurements.Count);
             }
 
             base.GetReferences(references, refType);
@@ -149,8 +149,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TERMINAL_MEASURMENTS:
-                    measurments.Add(globalId);
+                case ModelCode.TERMINAL_MEASUREMENTS:
+                    measurements.Add(globalId);
                     break;
 
                 default:
@@ -163,10 +163,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TERMINAL_MEASURMENTS:
-                    if (measurments.Contains(globalId))
+                case ModelCode.TERMINAL_MEASUREMENTS:
+                    if (measurements.Contains(globalId))
                     {
-                        measurments.Remove(globalId);
+                        measurements.Remove(globalId);
                     }
                     else
                     {

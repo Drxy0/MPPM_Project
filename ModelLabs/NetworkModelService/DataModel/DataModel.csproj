@@ -91,9 +91,11 @@
   <ItemGroup>
     <Compile Include="Core\ConductingEquipment.cs" />
     <Compile Include="Core\ConnectivityNode.cs" />
+    <Compile Include="Core\ConnectivityNodeContainer.cs" />
     <Compile Include="Core\Equipment.cs" />
+    <Compile Include="Core\EquipmentContainer.cs" />
     <Compile Include="Core\IdentifiedObject.cs" />
-    <Compile Include="Core\Measurment.cs" />
+    <Compile Include="Core\Measurement.cs" />
     <Compile Include="Core\PowerSystemResource.cs" />
     <Compile Include="Core\Terminal.cs" />
     <Compile Include="Core\TopologicalNode.cs" />
