@@ -22,7 +22,6 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 {
                     rd.AddProperty(new Property(ModelCode.IDOBJ_ALIASNAME, cimIdentifiedObject.AliasName));
                 }
-
             }
         }
 
@@ -125,20 +124,62 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 }
             }
         }
+        public static void PopulatePowerSystemResourceProperties(FTN.PowerSystemResource cimPowerSystemResource, ResourceDescription rd)
+        {
+            if ((cimPowerSystemResource != null) && (rd != null))
+            {
+                FTN_93_ProfileConverter.PopulateIdentifiedObjectProperties(cimPowerSystemResource, rd);
+            }
+        }
+
+        public static void PopulateConnectivityNodeContainerProperties(FTN.ConnectivityNodeContainer cimConnectivityNodeContainer, ResourceDescription rd)
+        {
+            if ((cimConnectivityNodeContainer != null) && (rd != null))
+            {
+                FTN_93_ProfileConverter.PopulatePowerSystemResourceProperties(cimConnectivityNodeContainer, rd);
+            }
+        }
 
         public static void PopulateEquipmentContainerProperties(FTN.EquipmentContainer cimEquipmentContainer, ResourceDescription rd)
         {
             if ((cimEquipmentContainer != null) && (rd != null))
             {
-                FTN_93_ProfileConverter.PopulateIdentifiedObjectProperties(cimEquipmentContainer, rd);
+                FTN_93_ProfileConverter.PopulateConnectivityNodeContainerProperties(cimEquipmentContainer, rd);
             }
         }
 
-        public static void PopulateSwitchProperties(FTN.Switch cimSwitch, ResourceDescription rd)
+        public static void PopulateEquipmentProperties(FTN.Equipment cimEquipment, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+        {
+            if ((cimEquipment != null) && (rd != null))
+            {
+                FTN_93_ProfileConverter.PopulatePowerSystemResourceProperties(cimEquipment, rd);
+
+                if (cimEquipment.EquipmentContainerHasValue)
+                {
+                    long gid = importHelper.GetMappedGID(cimEquipment.EquipmentContainer.ID);
+                    if (gid < 0)
+                    {
+                        report.Report.Append("WARNING: Convert ").Append(cimEquipment.GetType().ToString()).Append(" rdfID = \"").Append(cimEquipment.ID);
+                        report.Report.Append("\" - Failed to set reference to EquipmentContainer: rdfID \"").Append(cimEquipment.EquipmentContainer.ID).AppendLine(" \" is not mapped to GID!");
+                    }
+                    rd.AddProperty(new Property(ModelCode.EQUIPMENT_EQUIPMENTCONTAINER, gid));
+                }
+            }
+        }
+
+        public static void PopulateConductingEquipmentProperties(FTN.ConductingEquipment cimConductingEquipment, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
+        {
+            if ((cimConductingEquipment != null) && (rd != null))
+            {
+                FTN_93_ProfileConverter.PopulateEquipmentProperties(cimConductingEquipment, rd, importHelper, report);
+            }
+        }
+
+        public static void PopulateSwitchProperties(FTN.Switch cimSwitch, ResourceDescription rd, ImportHelper importHelper, TransformAndLoadReport report)
         {
             if ((cimSwitch != null) && (rd != null))
             {
-                FTN_93_ProfileConverter.PopulateIdentifiedObjectProperties(cimSwitch, rd);
+                FTN_93_ProfileConverter.PopulateConductingEquipmentProperties(cimSwitch, rd, importHelper, report);
 
                 if (cimSwitch.NormalOpenHasValue)
                 {

@@ -67,7 +67,6 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (property.Id)
             {
-                // No properties to set for lists (handled via references)
                 default:
                     base.SetProperty(property);
                     break;

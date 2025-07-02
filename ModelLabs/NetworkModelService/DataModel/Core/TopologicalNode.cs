@@ -106,6 +106,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
                     connectivityNodes.Add(globalId);
                     break;
 
+                case ModelCode.CONNECTIVITYNODE_TOPOLOGICALNODE:
+                    // Ignore this reference - it's handled by ConnectivityNode class
+                    break;
+
                 default:
                     base.AddReference(referenceId, globalId);
                     break;

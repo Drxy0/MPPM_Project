@@ -94,11 +94,11 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             switch (property.Id)
             {
                 case ModelCode.TERMINAL_CONNECTIVITYNODE:
-                    connectivityNode = property.AsLong();
+                    connectivityNode = property.AsReference();
                     break;
 
                 case ModelCode.TERMINAL_CONDEQ:
-                    conductingEquipment = property.AsLong();
+                    conductingEquipment = property.AsReference();
                     break;
 
                 // No property setter for lists (handled via references)

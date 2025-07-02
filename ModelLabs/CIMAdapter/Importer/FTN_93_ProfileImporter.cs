@@ -87,12 +87,12 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
             LogManager.Log("Loading elements and creating delta...", LogLevel.Info);
 
             //// import all concrete model types (DMSType enum)
+            ImportEquipmentContainer();
+            ImportSwitch();
             ImportTopologicalNode();
             ImportConnectivityNode();
             ImportTerminal();
             ImportMeasurement();
-            ImportEquipmentContainer();
-            ImportSwitch();
 
             LogManager.Log("Loading elements and creating delta completed.", LogLevel.Info);
         }
@@ -117,11 +117,11 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 if (rd != null)
                 {
                     delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
-                    report.Report.Append("Switch ID = ").Append(cimTopologicalNode.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
+                    report.Report.Append("ToplogicalNode ID = ").Append(cimTopologicalNode.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
                 }
                 else
                 {
-                    report.Report.Append("Switch ID = ").Append(cimTopologicalNode.ID).AppendLine(" FAILED to be converted");
+                    report.Report.Append("ToplogicalNode ID = ").Append(cimTopologicalNode.ID).AppendLine(" FAILED to be converted");
                 }
             }
             report.Report.AppendLine();
@@ -137,7 +137,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 importHelper.DefineIDMapping(cimTopologicalNode.ID, gid);
 
                 ////populate ResourceDescription
-                //FTN_93_ProfileConverter.PopulateTopologicalNodeProperties(cimTopologicalNode, rd);
+                FTN_93_ProfileConverter.PopulateTopologicalNodeProperties(cimTopologicalNode, rd, importHelper);
             }
             return rd;
         }
@@ -159,11 +159,11 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 if (rd != null)
                 {
                     delta.AddDeltaOperation(DeltaOpType.Insert, rd, true);
-                    report.Report.Append("Switch ID = ").Append(cimConnectivityNode.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
+                    report.Report.Append("ConnectivityNode ID = ").Append(cimConnectivityNode.ID).Append(" SUCCESSFULLY converted to GID = ").AppendLine(rd.Id.ToString());
                 }
                 else
                 {
-                    report.Report.Append("Switch ID = ").Append(cimConnectivityNode.ID).AppendLine(" FAILED to be converted");
+                    report.Report.Append("ConnectivityNode ID = ").Append(cimConnectivityNode.ID).AppendLine(" FAILED to be converted");
                 }
             }
             report.Report.AppendLine();
@@ -174,12 +174,12 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
             ResourceDescription rd = null;
             if (cimConnectivityNode != null)
             {
-                long gid = ModelCodeHelper.CreateGlobalId(0, (short)DMSType.TOPOLOGICALNODE, importHelper.CheckOutIndexForDMSType(DMSType.CONNECTIVITYNODE));
+                long gid = ModelCodeHelper.CreateGlobalId(0, (short)DMSType.CONNECTIVITYNODE, importHelper.CheckOutIndexForDMSType(DMSType.CONNECTIVITYNODE));
                 rd = new ResourceDescription(gid);
                 importHelper.DefineIDMapping(cimConnectivityNode.ID, gid);
 
                 ////populate ResourceDescription
-                //FTN_93_ProfileConverter.PopulateConnectivityNodeProperties(cimConnectivityNode, rd);
+                FTN_93_ProfileConverter.PopulateConnectivityNodeProperties(cimConnectivityNode, rd, importHelper, report);
             }
             return rd;
         }
@@ -221,7 +221,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 importHelper.DefineIDMapping(cimTerminal.ID, gid);
 
                 ////populate ResourceDescription
-                //FTN_93_ProfileConverter.PopulateTerminalProperties(cimTerminal, rd);
+                FTN_93_ProfileConverter.PopulateTerminalProperties(cimTerminal, rd, importHelper, report);
             }
             return rd;
         }
@@ -263,7 +263,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 importHelper.DefineIDMapping(cimMeasurement.ID, gid);
 
                 ////populate ResourceDescription
-                //FTN_93_ProfileConverter.PopulateMeasurementProperties(cimMeasurement, rd);
+                FTN_93_ProfileConverter.PopulateMeasurementProperties(cimMeasurement, rd, importHelper, report);
             }
             return rd;
         }
@@ -305,7 +305,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 importHelper.DefineIDMapping(cimEquipmentContainer.ID, gid);
 
                 ////populate ResourceDescription
-                //FTN_93_ProfileConverter.PopulateEquipmentContainerProperties(cimEquipmentContainer, rd);
+                FTN_93_ProfileConverter.PopulateEquipmentContainerProperties(cimEquipmentContainer, rd);
             }
             return rd;
         }
@@ -347,7 +347,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                 importHelper.DefineIDMapping(cimSwitch.ID, gid);
 
                 ////populate ResourceDescription
-                //FTN_93_ProfileConverter.PopulateSwitchProperties(cimSwitch, rd);
+                FTN_93_ProfileConverter.PopulateSwitchProperties(cimSwitch, rd, importHelper, report);
             }
             return rd;
         }

@@ -91,11 +91,11 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             switch (property.Id)
             {
                 case ModelCode.CONNECTIVITYNODE_TOPOLOGICALNODE:
-                    topologicalNode = property.AsLong();
+                    topologicalNode = property.AsReference();
                     break;
 
                 case ModelCode.CONNECTIVITYNODE_CNC:
-                    topologicalNode = property.AsLong();
+                    topologicalNode = property.AsReference();
                     break;
 
                 // dont add cases for Lists
@@ -146,9 +146,11 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                // only for Lists
                 case ModelCode.CONNECTIVITYNODE_TERMINALS:
                     terminals.Add(globalId);
+                    break;
+
+                case ModelCode.TERMINAL_CONNECTIVITYNODE:
                     break;
 
                 default:
@@ -161,7 +163,6 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                // only for Lists
                 case ModelCode.CONNECTIVITYNODE_TERMINALS:
 
                     if (terminals.Contains(globalId))

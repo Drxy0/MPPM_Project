@@ -81,11 +81,11 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
             switch (property.Id)
             {
                 case ModelCode.MEASUREMENT_TERMINAL:
-                    terminal = property.AsLong();
+                    terminal = property.AsReference();
                     break;
 
                 case ModelCode.MEASUREMENT_PSR:
-                    powerSystemResource = property.AsLong();
+                    powerSystemResource = property.AsReference();
                     break;
 
                 default:

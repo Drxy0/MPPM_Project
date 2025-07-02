@@ -102,7 +102,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
 					break;
                 
 				case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
-                    equipmentContainer = property.AsLong();
+                    equipmentContainer = property.AsReference();
                     break;
 
                 default:

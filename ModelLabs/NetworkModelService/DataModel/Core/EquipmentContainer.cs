@@ -106,6 +106,10 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
                     equipments.Add(globalId);
                     break;
 
+                case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
+                    // Ignore this reference - it's handled by Equipment class
+                    break;
+
                 default:
                     base.AddReference(referenceId, globalId);
                     break;
