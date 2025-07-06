@@ -102,12 +102,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS:
-                    equipments.Add(globalId);
-                    break;
-
                 case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
-                    // Ignore this reference - it's handled by Equipment class
+                    equipments.Add(globalId);
                     break;
 
                 default:
@@ -120,7 +116,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.EQUIPMENTCONTAINER_EQUIPMENTS:
+                case ModelCode.EQUIPMENT_EQUIPMENTCONTAINER:
                     if (equipments.Contains(globalId))
                     {
                         equipments.Remove(globalId);

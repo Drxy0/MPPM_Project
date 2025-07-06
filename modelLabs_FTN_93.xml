@@ -45,20 +45,20 @@
 	</cim:ConnectivityNode>
 
 <!-- Terminal -->    
-	<!-- <cim:Terminal rdf:ID="T1"> -->
-		<!-- <cim:Terminal.ConductingEquipment rdf:resource="#SW1"/> -->
-		<!-- <cim:Terminal.ConnectivityNode rdf:resource="#CN1"/> -->
-		<!-- <cim:IdentifiedObject.aliasName>Primary Terminal</cim:IdentifiedObject.aliasName> -->
-		<!-- <cim:IdentifiedObject.mRID>T1</cim:IdentifiedObject.mRID> -->
-		<!-- <cim:IdentifiedObject.name>Switch_Terminal</cim:IdentifiedObject.name> -->
-	<!-- </cim:Terminal> -->
+	<cim:Terminal rdf:ID="T1">
+		<cim:Terminal.ConductingEquipment rdf:resource="#SW1"/>
+		<cim:Terminal.ConnectivityNode rdf:resource="#CN1"/>
+		<cim:IdentifiedObject.aliasName>Primary Terminal</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>T1</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Switch_Terminal</cim:IdentifiedObject.name>
+	</cim:Terminal>
 
 <!-- Measurement -->
-	<!-- <cim:Measurement rdf:ID="M1"> -->
-		<!-- <cim:Measurement.PowerSystemResource rdf:resource="#SW1"/> -->
-		<!-- <cim:Measurement.Terminal rdf:resource="#T1"/> -->
-		<!-- <cim:IdentifiedObject.aliasName>Voltage Measurement</cim:IdentifiedObject.aliasName> -->
-		<!-- <cim:IdentifiedObject.mRID>M1</cim:IdentifiedObject.mRID> -->
-		<!-- <cim:IdentifiedObject.name>Switch_Measurement</cim:IdentifiedObject.name> -->
-	<!-- </cim:Measurement> -->
+	<cim:Measurement rdf:ID="M1">
+		<cim:Measurement.PowerSystemResource rdf:resource="#SW1"/>
+		<cim:Measurement.Terminal rdf:resource="#T1"/>
+		<cim:IdentifiedObject.aliasName>Voltage Measurement</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>M1</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Switch_Measurement</cim:IdentifiedObject.name>
+	</cim:Measurement>
 </rdf:RDF>

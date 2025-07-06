@@ -100,7 +100,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASUREMENTS:
+                case ModelCode.MEASUREMENT_PSR:
                     measurements.Add(globalId);
                     break;
 
@@ -114,7 +114,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.PSR_MEASUREMENTS:
+                case ModelCode.MEASUREMENT_PSR:
                     if (measurements.Contains(globalId))
                     {
                         measurements.Remove(globalId);

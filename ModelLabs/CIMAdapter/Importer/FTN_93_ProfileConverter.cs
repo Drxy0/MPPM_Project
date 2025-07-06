@@ -154,6 +154,15 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
             {
                 FTN_93_ProfileConverter.PopulatePowerSystemResourceProperties(cimEquipment, rd);
 
+                if (cimEquipment.AggregateHasValue)
+                {
+                    rd.AddProperty(new Property(ModelCode.EQUIPMENT_AGGREGATE, cimEquipment.Aggregate));
+                }
+                if (cimEquipment.NormallyInServiceHasValue)
+                {
+                    rd.AddProperty(new Property(ModelCode.EQUIPMENT_NORMALLYINSERVICE, cimEquipment.NormallyInService));
+                }
+
                 if (cimEquipment.EquipmentContainerHasValue)
                 {
                     long gid = importHelper.GetMappedGID(cimEquipment.EquipmentContainer.ID);

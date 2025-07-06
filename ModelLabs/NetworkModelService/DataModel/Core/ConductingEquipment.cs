@@ -85,6 +85,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
                 return terminals.Count > 0 || base.IsReferenced;
             }
         }
+
         public override void GetReferences(Dictionary<ModelCode, List<long>> references, TypeOfReference refType)
         {
             if (terminals != null && terminals.Count != 0 && (refType == TypeOfReference.Target || refType == TypeOfReference.Both))

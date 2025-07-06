@@ -102,12 +102,8 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
-                    connectivityNodes.Add(globalId);
-                    break;
-
                 case ModelCode.CONNECTIVITYNODE_TOPOLOGICALNODE:
-                    // Ignore this reference - it's handled by ConnectivityNode class
+                    connectivityNodes.Add(globalId);
                     break;
 
                 default:
@@ -120,7 +116,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TOPOLOGICALNODE_CONNECTIVITYNODES:
+                case ModelCode.CONNECTIVITYNODE_TOPOLOGICALNODE:
                     if (connectivityNodes.Contains(globalId))
                     {
                         connectivityNodes.Remove(globalId);

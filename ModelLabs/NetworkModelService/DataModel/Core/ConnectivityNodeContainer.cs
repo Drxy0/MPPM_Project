@@ -101,7 +101,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.CNC_CONNECTIVITYNODES:
+                case ModelCode.CONNECTIVITYNODE_CNC:
                     connectivityNodes.Add(globalId);
                     break;
 
@@ -115,7 +115,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.CNC_CONNECTIVITYNODES:
+                case ModelCode.CONNECTIVITYNODE_CNC:
                     if (connectivityNodes.Contains(globalId))
                     {
                         connectivityNodes.Remove(globalId);

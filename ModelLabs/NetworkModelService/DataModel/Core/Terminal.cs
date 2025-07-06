@@ -149,7 +149,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TERMINAL_MEASUREMENTS:
+                case ModelCode.MEASUREMENT_TERMINAL:
                     measurements.Add(globalId);
                     break;
 
@@ -163,7 +163,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Core
         {
             switch (referenceId)
             {
-                case ModelCode.TERMINAL_MEASUREMENTS:
+                case ModelCode.MEASUREMENT_TERMINAL:
                     if (measurements.Contains(globalId))
                     {
                         measurements.Remove(globalId);
