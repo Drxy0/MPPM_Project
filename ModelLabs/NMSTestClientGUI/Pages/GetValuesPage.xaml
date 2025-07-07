@@ -6,10 +6,46 @@
       xmlns:local="clr-namespace:NMSTestClientGUI.Pages"
       mc:Ignorable="d"
       Background="White"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="800"
       Title="GetValuesPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left panel -->
+        <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Top" >
+
+            <Label Content="Choose GID:" FontSize="16" FontWeight="Bold" Margin="0,10,0,5"/>
+            <ComboBox x:Name="GIDCombobox" Height="30" Margin="0,0,0,10"
+              SelectionChanged="GIDCombobox_SelectionChanged"/>
+
+            <Button x:Name="GetValuesButton" Content="Get Values" Height="30" Width="120"
+            Background="#27ae60" Foreground="White" Margin="0,0,0,20"
+            Click="GetValuesButton_Click" />
+
+            <CheckBox x:Name="SellectAllCheckBox" Content="Select All Properties"
+              Margin="0,0,0,10" Click="SellectAllCheckBox_Click"
+              FontWeight="SemiBold" />
+
+            <ScrollViewer Height="500" VerticalScrollBarVisibility="Auto">
+                <UniformGrid x:Name="CheckBoxGrid" Columns="1"/>
+            </ScrollViewer>
+        </StackPanel>
+
+        <!-- Results panel -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Results:" FontSize="16" FontWeight="Bold" Margin="0,10,0,5"/>
+            <TextBox x:Name="ResultsTextBox"
+             VerticalScrollBarVisibility="Auto"
+             TextWrapping="Wrap"
+             AcceptsReturn="True"
+             Height="600"
+             FontFamily="Consolas"
+             FontSize="14"/>
+        </StackPanel>
+
     </Grid>
 </Page>

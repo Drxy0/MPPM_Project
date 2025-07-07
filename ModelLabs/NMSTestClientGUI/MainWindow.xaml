@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NMSTestClientGUI"
         xmlns:pages="clr-namespace:NMSTestClientGUI.Pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="800">
     <Grid>
         <TabControl>
             <TabItem Header="Get Values Page">

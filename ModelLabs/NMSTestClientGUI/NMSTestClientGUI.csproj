@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TestGdaGUI.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -127,6 +129,10 @@
     <ProjectReference Include="..\NetworkModelService\Test\NMSTestClient\NMSTestClient.csproj">
       <Project>{32ee9373-a350-42ac-972b-41b2edaba082}</Project>
       <Name>NMSTestClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceContracts\NetworkModelQueryContract\NetworkModelGDAContract.csproj">
+      <Project>{B726FB71-D295-41EE-9644-B2B0B1BC8911}</Project>
+      <Name>NetworkModelGDAContract</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
