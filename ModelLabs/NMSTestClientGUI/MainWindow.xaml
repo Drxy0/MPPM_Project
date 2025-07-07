@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:NMSTestClientGUI"
         xmlns:pages="clr-namespace:NMSTestClientGUI.Pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800">
+        Title="MainWindow" Height="800" Width="900">
     <Grid>
         <TabControl>
-            <TabItem Header="Get Values Page">
+            <TabItem Header="Get Values">
                 <Frame Source="Pages/GetValuesPage.xaml"/>
             </TabItem>
             <TabItem Header="Get Extent Values">

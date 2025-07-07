@@ -3,17 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TelventDMS.Services.NetworkModelService.TestClient.Tests;
 
 namespace NMSTestClientGUI.Pages
 {
@@ -58,17 +50,14 @@ namespace NMSTestClientGUI.Pages
 
             var props = propertyIDsByModelCode[code];
             GetValuesButton.Visibility = Visibility.Visible;
-            SellectAllCheckBox.Visibility = Visibility.Visible;
-            SellectAllCheckBox.IsChecked = false;
+            SelectAllCheckBox.Visibility = Visibility.Visible;
+            SelectAllCheckBox.IsChecked = false;
 
             foreach (var prop in props)
             {
                 var cb = new CheckBox
                 {
                     Content = prop.ToString(),
-                    FontSize = 14,
-                    FontFamily = new FontFamily("Trebuchet MS"),
-                    Margin = new Thickness(0, 2, 0, 2),
                     Visibility = Visibility.Visible
                 };
 
@@ -86,7 +75,7 @@ namespace NMSTestClientGUI.Pages
 
         private List<ModelCode> GetPropertiesForCheckedBoxes()
         {
-            if (SellectAllCheckBox.IsChecked == true)
+            if (SelectAllCheckBox.IsChecked == true)
                 return propertyIDsByModelCode[code];
 
             var selectedProps = new List<ModelCode>();
@@ -165,9 +154,9 @@ namespace NMSTestClientGUI.Pages
             ResultsTextBox.Text = sb.ToString();
         }
 
-        private void SellectAllCheckBox_Click(object sender, RoutedEventArgs e)
+        private void SelectAllCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            bool isChecked = SellectAllCheckBox.IsChecked == true;
+            bool isChecked = SelectAllCheckBox.IsChecked == true;
 
             foreach (var child in CheckBoxGrid.Children)
             {

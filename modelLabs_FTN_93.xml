@@ -10,6 +10,13 @@
 		<cim:IdentifiedObject.mRID>EC1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>Equipment_Container</cim:IdentifiedObject.name>
 	</cim:EquipmentContainer>
+
+	<cim:EquipmentContainer rdf:ID="EC2">
+		<cim:IdentifiedObject.aliasName>Line Bay</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>EC2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Line_Bay</cim:IdentifiedObject.name>
+	</cim:EquipmentContainer>
+
 	
 <!-- Switch -->    
 	<cim:Switch rdf:ID="SW1">
@@ -25,6 +32,20 @@
 		<cim:IdentifiedObject.mRID>SW1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>protection_Switch</cim:IdentifiedObject.name>
 	</cim:Switch>
+	
+	<cim:Switch rdf:ID="SW2">
+		<cim:Switch.normalOpen>true</cim:Switch.normalOpen>
+		<cim:Switch.ratedCurrent>400</cim:Switch.ratedCurrent>
+		<cim:Switch.retained>false</cim:Switch.retained>
+		<cim:Switch.switchOnCount>2</cim:Switch.switchOnCount>
+		<cim:Switch.switchOnDate>2023-02-20T10:15:00</cim:Switch.switchOnDate>
+		<cim:Equipment.aggregate>false</cim:Equipment.aggregate>
+		<cim:Equipment.EquipmentContainer rdf:resource="#EC2"/>
+		<cim:Equipment.normallyInService>false</cim:Equipment.normallyInService>
+		<cim:IdentifiedObject.aliasName>Line Disconnector</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>SW2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Line_Disconnector</cim:IdentifiedObject.name>
+	</cim:Switch>
 
 
 <!-- TopologicalNode -->    
@@ -32,6 +53,12 @@
 		<cim:IdentifiedObject.aliasName>Primary Node</cim:IdentifiedObject.aliasName>
 		<cim:IdentifiedObject.mRID>TN1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>Topological_Node</cim:IdentifiedObject.name>
+	</cim:TopologicalNode>
+	
+	<cim:TopologicalNode rdf:ID="TN2">
+		<cim:IdentifiedObject.aliasName>Secondary Node</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>TN2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Secondary_Node</cim:IdentifiedObject.name>
 	</cim:TopologicalNode>
 	
 	
@@ -43,6 +70,14 @@
 		<cim:IdentifiedObject.mRID>CN1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>Transformer_Connectivity</cim:IdentifiedObject.name>
 	</cim:ConnectivityNode>
+	
+	<cim:ConnectivityNode rdf:ID="CN2">
+		<cim:ConnectivityNode.ConnectivityNodeContainer rdf:resource="#EC2"/>
+		<cim:ConnectivityNode.TopologicalNode rdf:resource="#TN2"/>
+		<cim:IdentifiedObject.aliasName>Line Side Connectivity</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>CN2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Line_Connectivity</cim:IdentifiedObject.name>
+	</cim:ConnectivityNode>
 
 <!-- Terminal -->    
 	<cim:Terminal rdf:ID="T1">
@@ -52,6 +87,14 @@
 		<cim:IdentifiedObject.mRID>T1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>Switch_Terminal</cim:IdentifiedObject.name>
 	</cim:Terminal>
+	
+	<cim:Terminal rdf:ID="T2">
+		<cim:Terminal.ConductingEquipment rdf:resource="#SW2"/>
+		<cim:Terminal.ConnectivityNode rdf:resource="#CN2"/>
+		<cim:IdentifiedObject.aliasName>Line Terminal</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>T2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Line_Terminal</cim:IdentifiedObject.name>
+	</cim:Terminal>
 
 <!-- Measurement -->
 	<cim:Measurement rdf:ID="M1">
@@ -60,5 +103,13 @@
 		<cim:IdentifiedObject.aliasName>Voltage Measurement</cim:IdentifiedObject.aliasName>
 		<cim:IdentifiedObject.mRID>M1</cim:IdentifiedObject.mRID>
 		<cim:IdentifiedObject.name>Switch_Measurement</cim:IdentifiedObject.name>
+	</cim:Measurement>
+	
+	<cim:Measurement rdf:ID="M2">
+		<cim:Measurement.PowerSystemResource rdf:resource="#SW2"/>
+		<cim:Measurement.Terminal rdf:resource="#T2"/>
+		<cim:IdentifiedObject.aliasName>Current Measurement</cim:IdentifiedObject.aliasName>
+		<cim:IdentifiedObject.mRID>M2</cim:IdentifiedObject.mRID>
+		<cim:IdentifiedObject.name>Line_Measurement</cim:IdentifiedObject.name>
 	</cim:Measurement>
 </rdf:RDF>

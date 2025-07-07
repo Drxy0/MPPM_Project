@@ -30,14 +30,22 @@
                SelectionChanged="DMSTypeComboBox_SelectionChanged"/>
 
             <Button x:Name="GetRelatedValuesButton" Content="Get Related Values" Height="30" Width="180"
-             Background="#27ae60" Foreground="White" Margin="0,0,0,20"
+             Background="DodgerBlue" Foreground="White" Margin="0,0,0,20"
              Click="GetRelatedValuesButton_Click" Visibility="Hidden"/>
 
-            <CheckBox x:Name="SelectAllCheckBox" Content="Select All Properties" Margin="0,0,0,10"
-               Click="SelectAllCheckBox_Click" FontWeight="SemiBold" Visibility="Hidden"/>
+            <CheckBox x:Name="SelectAllCheckBox" Content="Select All Properties"
+              FontSize="14" Padding="5,-2,0,0" FontWeight="SemiBold"
+              Margin="0,0,0,10" Click="SelectAllCheckBox_Click" Visibility="Hidden"/>
 
-            <ScrollViewer Height="350" VerticalScrollBarVisibility="Auto">
-                <UniformGrid x:Name="CheckBoxGrid" Columns="1"/>
+            <ScrollViewer Height="500" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="CheckBoxGrid" Margin="20,0">
+                    <StackPanel.Resources>
+                        <Style TargetType="CheckBox">
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Margin" Value="0,10,0,10"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
             </ScrollViewer>
         </StackPanel>
 
