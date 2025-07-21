@@ -10,7 +10,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
         private bool normalOpen;
         private float ratedCurrent;
         private bool retained;
-        private long switchOnCount;
+        private int switchOnCount;
         private DateTime switchOnDate;
 
         public Switch(long globalId) : base(globalId)
@@ -35,7 +35,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
             set { retained = value; }
         }
 
-        public long SwitchOnCount
+        public int SwitchOnCount
         {
             get { return switchOnCount; }
             set { switchOnCount = value; }
@@ -134,7 +134,7 @@ namespace FTN.Services.NetworkModelService.DataModel.Wires
                     break;
 
                 case ModelCode.SWITCH_SWITCHONCOUNT:
-                    switchOnCount = property.AsLong();
+                    switchOnCount = property.AsInt();
                     break;
 
                 case ModelCode.SWITCH_SWITCHONDATE:

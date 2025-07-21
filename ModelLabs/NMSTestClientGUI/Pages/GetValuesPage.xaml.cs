@@ -31,18 +31,30 @@ namespace NMSTestClientGUI.Pages
                 .ToDictionary(mc => mc, mc => resourcesDesc.GetAllPropertyIds(mc));
 
             gids = testGda.TestGetExtentValuesAllTypes();
-            GIDCombobox.ItemsSource = gids.Select(gid => $"0x{gid:x16}").ToList();
+
+            foreach (var gid in gids)
+            {
+                string codeName = resourcesDesc.GetModelCodeFromId(gid).ToString();
+                var item = new ComboBoxItem
+                {
+                    Content = $"{codeName} - 0x{gid:x16}",
+                    Tag = gid
+                };
+                GIDComboBox.Items.Add(item);
+            }
         }
 
-        private void GIDCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void GIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (GIDCombobox.SelectedIndex >= 0)
+            if (GIDComboBox.SelectedItem is ComboBoxItem selectedItem && GIDComboBox.SelectedIndex >= 0)
             {
-                code = resourcesDesc.GetModelCodeFromId(GetGID());
+                long selectedGid = (long)selectedItem.Tag;
+                code = resourcesDesc.GetModelCodeFromId(selectedGid);
                 CreateCheckBoxes();
             }
         }
-        private long GetGID() => gids[GIDCombobox.SelectedIndex];
+
+        private long GetGID() => gids[GIDComboBox.SelectedIndex];
 
         private void CreateCheckBoxes()
         {

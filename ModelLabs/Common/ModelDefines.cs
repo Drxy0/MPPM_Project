@@ -64,7 +64,7 @@ namespace FTN.Common
         SWITCH_NORMALOPEN                   = 0x1511100000060101,
         SWITCH_RATEDCURRENT                 = 0x1511100000060205,
         SWITCH_RETAINED                     = 0x1511100000060301,
-        SWITCH_SWITCHONCOUNT                = 0x1511100000060404,
+        SWITCH_SWITCHONCOUNT                = 0x1511100000060403,
         SWITCH_SWITCHONDATE                 = 0x1511100000060508,
 
     }

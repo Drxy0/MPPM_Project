@@ -55,7 +55,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
 
         public TransformAndLoadReport CreateNMSDelta(ConcreteModel cimConcreteModel)
         {
-            LogManager.Log("Importing PowerTransformer Elements...", LogLevel.Info);
+            LogManager.Log("Importing FTN_93 Elements...", LogLevel.Info);
             report = new TransformAndLoadReport();
             concreteModel = cimConcreteModel;
             delta.ClearDeltaOperations();
@@ -75,7 +75,7 @@ namespace FTN.ESI.SIMES.CIM.CIMAdapter.Importer
                     report.Success = false;
                 }
             }
-            LogManager.Log("Importing PowerTransformer Elements - END.", LogLevel.Info);
+            LogManager.Log("Importing FTN_93 Elements - END.", LogLevel.Info);
             return report;
         }
 
